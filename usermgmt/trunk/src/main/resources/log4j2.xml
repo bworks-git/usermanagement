@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<properties>
+		<property name="name">app</property>
+		<property name="dir">${istage.app.log.dir}</property>
+		<property name="pattern">%d{dd-MMM HH:mm:ss} %-5p %30.30C{1} %15.15M %4.4L %m%n</property>
+	</properties>
+
+	<appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${pattern}" />
+		</Console>
+
+		<RollingFile name="rootAppender" fileName="${dir}/root/root.log"
+			filePattern="${dir}/root/$${date:yyyy-MM}/root-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %m%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+		
+		<RollingFile name="jdbc-connection-log" fileName="${dir}/jdbc/connection.log"
+			filePattern="${dir}/jdbc/connection/$${date:yyyy-MM}/connection-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %m%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="stack-trace-log" fileName="${dir}/jdbc/stack-trace.log"
+			filePattern="${dir}/jdbc/$${date:yyyy-MM}/stack-trace-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>%m%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="cartAppender" fileName="${dir}/cart/cart.log"
+			filePattern="${dir}/cart/$${date:yyyy-MM}/cart-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="checkoutAppender" fileName="${dir}/checkout/checkout.log"
+			filePattern="${dir}/checkout/$${date:yyyy-MM}/checkout-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="customerAppender" fileName="${dir}/customer/customer.log"
+			filePattern="${dir}/customer/$${date:yyyy-MM}/customer-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="inventoryAppender" fileName="${dir}/inventory/inventory.log"
+			filePattern="${dir}/inventory/$${date:yyyy-MM}/inventory-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="KonaKartAppender" fileName="${dir}/KonaKart/KonaKart.log"
+			filePattern="${dir}/KonaKart/$${date:yyyy-MM}/KonaKart-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="mailAppender" fileName="${dir}/mail/mail.log"
+			filePattern="${dir}/mail/$${date:yyyy-MM}/mail-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="productAppender" fileName="${dir}/product/product.log"
+			filePattern="${dir}/product/$${date:yyyy-MM}/product-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="productStatusUpdateJobAppender"
+			fileName="${dir}/productStatusUpdateJob/productStatusUpdateJob.log"
+			filePattern="${dir}/productStatusUpdateJob/$${date:yyyy-MM}/productStatusUpdateJob-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="resourceReleaseJobAppender"
+			fileName="${dir}/resourceReleaseJobAppender/resourceReleaseJob.log"
+			filePattern="${dir}/resourceReleaseJob/$${date:yyyy-MM}/resourceReleaseJob-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="searchAppender" fileName="${dir}/search/search.log"
+			filePattern="${dir}/search/$${date:yyyy-MM}/search-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="seatingAppender" fileName="${dir}/seating/seating.log"
+			filePattern="${dir}/seating/$${date:yyyy-MM}/seating-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="solrIndexingJobAppender"
+			fileName="${dir}/solrIndexingJob/solrIndexingJob.log"
+			filePattern="${dir}/solrIndexingJob/$${date:yyyy-MM}/solrIndexingJob-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="urlStrengtheningJobAppender"
+			fileName="${dir}/urlStrengtheningJob/urlStrengtheningJob.log"
+			filePattern="${dir}/urlStrengtheningJob/$${date:yyyy-MM}/urlStrengtheningJob-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy /><!-- Rotated everyday -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+		</RollingFile>
+	</appenders>
+
+	<loggers>
+		<logger name="jdbc.connection" level="debug" additivity="false">
+			<appender-ref ref="jdbc-connection-log" level="debug" />
+		</logger>
+
+		<logger name="stack.trace" level="debug" additivity="false">
+			<appender-ref ref="stack-trace-log" level="debug" />
+		</logger>
+
+		<logger name="nonweb.mail" level="debug" additivity="false">
+			<appender-ref ref="mailAppender" level="debug" />
+		</logger>
+
+		<logger name="nonweb.productStatusUpdateJob" level="debug"
+			additivity="false">
+			<appender-ref ref="productStatusUpdateJobAppender"
+				level="debug" />
+		</logger>
+
+		<logger name="nonweb.resourceReleaseJob" level="debug"
+			additivity="false">
+			<appender-ref ref="resourceReleaseJobAppender" level="debug" />
+		</logger>
+
+		<logger name="nonweb.solrIndexingJob" level="debug" additivity="false">
+			<appender-ref ref="solrIndexingJobAppender" level="debug" />
+		</logger>
+
+		<logger name="nonweb.urlStrengtheningJob" level="debug"
+			additivity="false">
+			<appender-ref ref="urlStrengtheningJobAppender" level="debug" />
+		</logger>
+
+		<logger additivity="false" name="org.istage.dao.cart" level="debug">
+			<appender-ref ref="cartAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.dao.customer" level="debug">
+			<appender-ref ref="customerAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.dao.inventory" level="debug">
+			<appender-ref ref="inventoryAppender" level="debug" />
+			<appender-ref ref="cartAppender" level="debug" />
+			<appender-ref ref="checkoutAppender" level="debug" />
+		</logger>
+		
+		<logger name="org.istage.dao.order" level="debug">
+			<appender-ref ref="checkoutAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.dao.product" level="debug">
+			<appender-ref ref="productAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false"
+			name="org.istage.job.scheduler.jobs.InventoryReleaseJob" level="debug">
+			<appender-ref ref="resourceReleaseJobAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false"
+			name="org.istage.job.scheduler.jobs.ProductStatusUpdateJob" level="debug">
+			<appender-ref ref="productStatusUpdateJobAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false"
+			name="org.istage.job.scheduler.jobs.SolrIndexingJob" level="debug">
+			<appender-ref ref="solrIndexingJobAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false"
+			name="org.istage.job.scheduler.jobs.UrlStrengtheningJob" level="debug">
+			<appender-ref ref="urlStrengtheningJobAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.seating" level="debug">
+			<appender-ref ref="seatingAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.service.cart" level="debug">
+			<appender-ref ref="cartAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.service.checkout" level="debug">
+			<appender-ref ref="checkoutAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.service.mail" level="debug">
+			<appender-ref ref="mailAppender" level="debug" />
+		</logger>
+		
+		<logger name="org.istage.service.mail.MailSenderImpl" level="debug">
+			<appender-ref ref="checkoutAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.service.order" level="debug">
+			<appender-ref ref="checkoutAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.service.orderproduct" level="debug">
+			<appender-ref ref="checkoutAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.service.product" level="debug">
+			<appender-ref ref="productAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.service.promos" level="debug">
+			<appender-ref ref="productAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.service.promotion" level="debug">
+			<appender-ref ref="productAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.service.search" level="debug">
+			<appender-ref ref="searchAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.vo.cart" level="debug">
+			<appender-ref ref="cartAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.vo.product" level="debug">
+			<appender-ref ref="productAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.vo.search" level="debug">
+			<appender-ref ref="searchAppender" level="debug" />
+		</logger>
+		
+		<logger name="org.istage.web" level="info" />
+		
+		<logger additivity="false" name="org.istage.web.IstageProductController" level="debug">
+			<appender-ref ref="productAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.web.IstageSeoProductController" level="debug">
+			<appender-ref ref="productAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.web.rest.CartRestController" level="debug">
+			<appender-ref ref="cartAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.web.rest.checkout" level="debug">
+			<appender-ref ref="checkoutAppender" level="debug" />
+		</logger>
+		
+		<logger additivity="false" name="org.istage.web.search" level="debug">
+			<appender-ref ref="searchAppender" level="debug" />
+		</logger>
+
+		<logger name="atomikos" level="warn" />
+
+		<logger name="com.amazonaws" level="info" />
+
+		<logger name="com.konakart" level="warn" />
+		<logger name="com.konakart.bl.KKApiMgr" level="warn" />
+		<logger name="com.konakart.clientlogging" level="warn" />
+		<logger name="com.konakart.datafeed" level="warn" />
+		<logger name="com.konakart.importer.xml" level="warn" />
+		<logger name="com.konakart.json" level="warn" />
+		<logger name="com.konakart.mq" level="warn" />
+		<logger name="com.konakart.reports" level="warn" />
+		<logger name="com.konakart.rmi" level="warn" />
+		<logger name="com.konakart.ws" level="warn" />
+
+		<logger name="com.konakartadmin" level="warn" />
+		<logger name="com.konakartadmin.rmi" level="warn" />
+		<logger name="com.konakartadmin.utils.DataIntegrityChecker"
+			level="warn" />
+		<logger name="com.konakartadmin.ws" level="warn" />
+
+		<logger name="com.mchange" level="warn" />
+		<logger name="com.mchange.v2.c3p0" level="warn" />
+
+		<logger name="com.opensymphony.xwork2" level="warn" />
+
+		<logger name="com.sun" level="warn" />
+
+		<logger name="com.workingdogs.village" level="warn" />
+
+		<logger name="freemarker" level="warn" />
+
+		<logger name="freemarker" level="warn" />
+
+		<logger name="net.sf.ehcache" level="warn" />
+
+		<logger name="net.taxcloud" level="warn" />
+
+		<logger name="net.taxcloud" level="warn" />
+
+		<logger name="org.apache" level="warn" />
+
+		<logger name="org.apache.activemq" level="error" />
+
+		<logger name="org.apache.axis" level="warn" />
+
+		<logger name="org.apache.commons.beanutils" level="warn" />
+
+		<logger name="org.apache.commons.configuration" level="warn" />
+
+		<logger name="org.apache.commons.dbcp" level="warn" />
+
+		<logger name="org.apache.commons.pool" level="warn" />
+
+		<logger name="org.apache.solr" level="warn" />
+
+		<logger name="org.apache.struts2" level="warn" />
+
+		<logger name="org.apache.torque.util.BasePeer" level="warn" />
+
+		<logger name="org.apache.velocity.runtime.log.SimpleLog4JLogSystem"
+			level="warn" />
+
+		<logger name="org.eclipse.birt" level="warn" />
+
+		<logger name="org.eclipse.jetty" level="error" />
+
+		<logger name="org.hibernate" level="info" />
+		
+		<logger name="org.mortbay.jetty" level="info" />
+		
+		<logger name="org.quartz" level="warn" />
+		
+		<logger name="org.springframework" level="error" />
+		
+		<logger name="ro.isdc.wro" level="warn" />
+		
+		<logger name="ro.isdc.wro" level="warn" />
+
+		<root level="info">
+			<appender-ref ref="Console" /> <!-- To console -->
+			<appender-ref ref="rootAppender" /> <!-- And to a rotated file -->
+		</root>
+	</loggers>
+</configuration>

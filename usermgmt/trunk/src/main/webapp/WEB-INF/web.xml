@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- KonaKart web.xml file. (c) 2013 DS Data Systems UK Ltd, All rights reserved. -->
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_4.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	id="WebApp_KonaKart" version="2.4">
+	<display-name>OSL User Management Application</display-name>
+
+	<context-param>
+		<param-name>plugmin:base-url</param-name>
+		<param-value>/admin</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>plugmin:security</param-name>
+		<param-value>false</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>plugmin:file-streaming</param-name>
+		<param-value>false</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>plugmin:file-storage</param-name>
+		<param-value>C:/Intel/</param-value>
+	</context-param>
+
+	<!-- <context-param> <param-name>plugmin:logo</param-name> <param-value>/resources/images/logo.png</param-value> 
+		</context-param> -->
+
+	<context-param>
+		<param-name>plugmin:back-to-site-url</param-name>
+		<param-value>http://localhost:8080</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>plugmin:parser-mode</param-name>
+		<!-- <param-value>eager</param-value> -->
+		<param-value>lazy</param-value>
+	</context-param>
+
+
+	<context-param>
+		<param-name>spring.profiles.active</param-name>
+		<param-value>test-env</param-value>
+	</context-param>
+
+	<filter>
+		<description>generated-persistence-filter</description>
+		<filter-name>mysql2Filter</filter-name>
+		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+		<init-param>
+			<param-name>entityManagerFactoryBeanName</param-name>
+			<param-value>mysql2</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>mysql2Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/favicon.ico</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+         	classpath:spring_config/um-properties-context.xml,
+			classpath:spring_config/um-service-context.xml,
+			classpath:spring_config/um-jpa-vendor-context.xml,
+			classpath:spring_config/um-transaction-context2.xml,
+			classpath:spring_config/um-dao-context2.xml,
+			classpath:spring_config/um-misc-context.xml,
+			classpath:spring_config/um-security-context.xml
+      </param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<mime-mapping>
+		<extension>wsdl</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xsd</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>html</extension>
+		<mime-type>text/html;charset=UTF-8</mime-type>
+	</mime-mapping>
+	<!-- Welcome File List -->
+	<welcome-file-list>
+		<welcome-file>users</welcome-file>
+		<!-- <welcome-file>index.html</welcome-file> -->
+	</welcome-file-list>
+</web-app>

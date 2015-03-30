@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+	   http://www.springframework.org/schema/tx 
+	   http://www.springframework.org/schema/tx/spring-tx-3.1.xsd   
+	   http://www.springframework.org/schema/context 
+	   http://www.springframework.org/schema/context/spring-context-3.1.xsd   
+	   http://www.springframework.org/schema/jee 
+	   http://www.springframework.org/schema/jee/spring-jee-3.1.xsd	   
+	   http://www.springframework.org/schema/lang
+	   http://www.springframework.org/schema/lang/spring-lang-3.1.xsd
+	   http://www.springframework.org/schema/security 
+	   http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+
+
+
+	<!-- ******************************************************************** -->
+	<!-- Scan for dao layer annotated beans -->
+	<!-- ******************************************************************** -->
+	<context:component-scan base-package="com.osl.skygyft.um.dao"
+		scoped-proxy="interfaces" />
+
+
+
+	<!-- ******************************************************************** -->
+	<!-- Setup a data source -->
+	<!-- ******************************************************************** -->
+<!--	
+	<bean id="mysqlDataSourceSpied" destroy-method="close"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="${mysql2.connection.url}" />
+		<property name="username" value="${mysql2.connection.username}" />
+		<property name="password" value="${mysql2.connection.password}" />
+		<property name="initialSize" value="${mysql2.minPoolSize}" />
+		<property name="maxActive" value="${mysql2.maxPoolSize}" />
+		<property name="removeAbandoned" value="${mysql2.connection.remove.abandoned}" />
+		<property name="removeAbandonedTimeout" value="${mysql2.connection.remove.abandoned.timeout}" />
+	</bean>
+
+	<bean id="mysql2DS" class="net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy">
+		<constructor-arg ref="mysqlDataSourceSpied" />
+	</bean>
+ -->	
+	 
+	 <bean id="mysql2DS" destroy-method="close"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="${mysql2.connection.url}" />
+		<property name="username" value="${mysql2.connection.username}" />
+		<property name="password" value="${mysql2.connection.password}" />
+		<property name="initialSize" value="${mysql2.minPoolSize}" />
+		<property name="maxActive" value="${mysql2.maxPoolSize}" />
+		<property name="removeAbandoned" value="${mysql2.connection.remove.abandoned}" />
+		<property name="removeAbandonedTimeout" value="${mysql2.connection.remove.abandoned.timeout}" />
+	</bean>
+
+
+	<!-- EntityManager Factory that brings together the persistence unit, datasource, 
+		and JPA Vendor -->
+	<bean id="mysql2"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="mysql2DS" />
+		<property name="persistenceUnitName" value="mysql2" />
+		<property name="jpaVendorAdapter" ref="mysql2JPAVendorAdapter" />
+		<property name="jpaProperties">
+			<map>
+				<entry key="hibernate.dialect" value="${mysql2.dialect}" />
+				<entry key="hibernate.show_sql" value="true" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="mysql2DS" />
+	</bean>
+
+</beans>
