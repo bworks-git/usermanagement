@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="show_sql">true</property>        
+		<!--<property name="org.hibernate.envers.default_schema">test</property>
+        <property name="org.hibernate.envers.audit_table_suffix">_hist</property>
+		<property name="org.hibernate.envers.revision_field_name">rev_id</property>
+		<property name="org.hibernate.envers.revision_type_field_name">rev_type</property>
+		<property name="hibernate.connection.zeroDateTimeBehavior">convertToNull</property>-->
+		<mapping class="com.osl.skygyft.um.domain.User"></mapping>
+		<mapping class="com.osl.skygyft.um.domain.AuditAction"></mapping>
+		<mapping class="com.osl.skygyft.um.domain.AuditTrial"></mapping>
+		<mapping class="com.osl.skygyft.um.domain.IpAddress"></mapping>
+		<mapping class="com.osl.skygyft.um.domain.Permission"></mapping>
+		<mapping class="com.osl.skygyft.um.domain.Role"></mapping>
+		<mapping class="com.osl.skygyft.um.domain.RolePermission"></mapping>
+		<mapping class="com.osl.skygyft.um.domain.RolePermissionPK"></mapping>
+		<mapping class="com.osl.skygyft.um.domain.UmParameter"></mapping>
+		<mapping class="com.osl.skygyft.um.domain.UserPermission"></mapping>
+		<mapping class="com.osl.skygyft.um.domain.UserPermissionPK"></mapping>
+		<mapping class="com.osl.skygyft.um.domain.UserRole"></mapping>
+		<mapping class="com.osl.skygyft.um.domain.UserRolePK"></mapping>
+    </session-factory>
+</hibernate-configuration>

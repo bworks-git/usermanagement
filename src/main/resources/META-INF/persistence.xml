@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+    xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+
+
+    <persistence-unit name="mysql2" transaction-type="RESOURCE_LOCAL">
+        <description>generated-persistence-unit</description>
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>${jndi.datasource.name}</jta-data-source>
+          
+          <class>com.osl.skygyft.um.domain.User</class>
+          <class>com.osl.skygyft.um.domain.Role</class>
+          <class>com.osl.skygyft.um.domain.UserRole</class>
+          <class>com.osl.skygyft.um.domain.Permission</class>
+          <class>com.osl.skygyft.um.domain.UserPermission</class>
+          <class>com.osl.skygyft.um.domain.RolePermission</class>
+          <class>com.osl.skygyft.um.domain.AuditAction</class>
+          <class>com.osl.skygyft.um.domain.AuditTrial</class>
+          <class>com.osl.skygyft.um.domain.UmParameter</class>
+          
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.default_schema" value="umdb" />
+            <!-- 
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider"/>
+			<property name="hibernate.ejb.cfgfile" value="config/hibernate.cfg.xml"/>
+			 -->
+			<property name="hibernate.ejb.interceptor" value="com.osl.skygyft.um.service.EntityInterceptor"/> 
+        </properties>
+    </persistence-unit>
+
+</persistence>

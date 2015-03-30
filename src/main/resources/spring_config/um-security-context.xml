@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/login" access="permitAll"></intercept-url>
+		<intercept-url pattern="/logout" access="permitAll"></intercept-url>
+		<intercept-url pattern="/accessdenied" access="permitAll"></intercept-url>
+		<intercept-url pattern="/**" access="hasAnyRole('HOME_ADMIN','PARTNER_ADMIN')"></intercept-url>
+		<intercept-url pattern="/admin**" access="hasAnyRole('HOME_ADMIN','PARTNER_ADMIN')" />
+		<form-login login-page="/login" default-target-url="/users"
+			authentication-failure-url="/login?error" username-parameter="username"
+			password-parameter="password" />
+		<logout logout-success-url="/login?logout" />
+		<!-- enable csrf protection -->
+		<!-- <csrf /> -->
+	</http>
+
+	<authentication-manager alias="authenticationManager">
+		<!-- <authentication-provider user-service-ref="userDetailsService"> -->
+		<authentication-provider>
+			<jdbc-user-service 
+				data-source-ref="mysql2DS"
+				users-by-username-query="select login_id, password, 1 from users where login_id=?"
+				authorities-by-username-query="select u.login_id, r.role_name from users u JOIN user_roles ur ON u.user_id = ur.user_id JOIN roles r ON r.role_id = ur.role_id WHERE u.login_id = ?" />
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>
